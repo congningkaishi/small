@@ -31,26 +31,34 @@ retinanet_r101_cfpt             | 22.6 | [Log](https://github.com/duzw9311/CFPT/
 有关 MMDetection 的基本使用方法，请参阅get_started.md。
 
 1安装 PyTorch。
+
 2安装 mmcv-full 和 MMDetection 工具箱。
 pip install openmim
 mim install mmcv-full==1.6.0
+
 3安装 albumentations 和其他包。
 pip install einops
 pip install timm
 pip install yapf==0.40.1
 pip install albumentations==1.1.0
+
 4安装 albumentations 和其他包。
 git clone https://github.com/duzw9311/CFPT.git
 cd ./CFPT
 pip install -e .
+
 使用方法
+
 数据准备
+
 下载转换为 COCO 标注格式的 VisDrone2019-DET 数据集。您可以从这个链接下载。[link](https://pan.baidu.com/s/1H_MtU-eSGI5jUJE-EcLynQ?pwd=2e3t).
 
 训练
+
 bash
 python tools/train.py configs/CFPT/retinanet_r18_cfpt_1x_visdrone.py 
 
 测试
+
 bash
 python tools/test.py configs/CFPT/retinanet_r18_cfpt_1x_visdrone.py work_dirs/retinanet_r18_cfpt_1x_visdrone/latest.pth --eval bbox

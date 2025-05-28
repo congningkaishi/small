@@ -1,15 +1,17 @@
-# Cross-Layer Feature Pyramid Transformer for Small Object Detection in Aerial Images
-This repository provides the official PyTorch implementation of **CFPT**.
+用于航拍图像小目标检测的跨层特征金字塔 Transformer
+本仓库提供了CFPT的官方 PyTorch 实现。
 
-In this [paper](https://arxiv.org/abs/2407.19696), we propose the cross-layer feature pyramid transformer designed for small object detection in aerial images.
+在这篇论文中，我们提出了一种专为航拍图像小目标检测设计的跨层特征金字塔 Transformer。
 
-Below is the performance comparison with other feature pyramid networks based on RetinaNet on the VisDrone-2019 DET dataset.
+下图展示了在 VisDrone-2019 DET 数据集上，基于 RetinaNet 的 CFPT 与其他特征金字塔网络的性能对比：
+
 <p align="center">
-<img src="resources/performance.png" width=63% height=63% 
+<img src="resources/performance.png" width=63% height=63%
 class="center">
 </p>
 
-The architecture of CFPT is as described below.
+CFPT 的架构如下所示：
+
 <p align="center">
 <img src="resources/architecture.png"
 class="center">
@@ -23,58 +25,32 @@ retinanet_r18_cfpt             | 20.0  | [Log](https://github.com/duzw9311/CFPT/
 retinanet_r50_cfpt              | 22.4 | [Log](https://github.com/duzw9311/CFPT/blob/main/resources/retinanet_r50_cfpt.log) | [BaiduNetDisk](https://pan.baidu.com/s/1oNGWQdcdUqaxwplltYydag?pwd=08nv) | [GoogleDrive](https://drive.google.com/file/d/13yp1FYhMf63ZiAzC-ulO1FMl5cImJmDS/view?usp=drive_link)
 retinanet_r101_cfpt             | 22.6 | [Log](https://github.com/duzw9311/CFPT/blob/main/resources/retinanet_r101_cfpt.log) | [BaiduNetDisk](https://pan.baidu.com/s/1jWf3vYDW253y7eIqJ1AUYg?pwd=7n7p) | [GoogleDrive](https://drive.google.com/file/d/15MC5C7jOUjgr1DMHGmUpvs7xjvWMR6-J/view?usp=drive_link)
 
-## Installation
-Our experiments are based on torch 1.10+cu113, mmdet 2.24.1 and mmcv-full 1.6.0.
+安装
+我们的实验基于 torch 1.10+cu113、mmdet 2.24.1 和 mmcv-full 1.6.0。
 
-Please see [get_started.md](https://github.com/duzw9311/CFPT/blob/main/docs/en/get_started.md) for the basic usage of MMDetection.
+有关 MMDetection 的基本使用方法，请参阅get_started.md。
 
-1. Install PyTorch.
+1安装 PyTorch。
+2安装 mmcv-full 和 MMDetection 工具箱。
+pip install openmim
+mim install mmcv-full==1.6.0
+3安装 albumentations 和其他包。
+pip install einops
+pip install timm
+pip install yapf==0.40.1
+pip install albumentations==1.1.0
+4安装 albumentations 和其他包。
+git clone https://github.com/duzw9311/CFPT.git
+cd ./CFPT
+pip install -e .
+使用方法
+数据准备
+下载转换为 COCO 标注格式的 VisDrone2019-DET 数据集。您可以从这个链接下载。[link](https://pan.baidu.com/s/1H_MtU-eSGI5jUJE-EcLynQ?pwd=2e3t).
 
-2. Install mmcv-full and MMDetection toolbox.
-    ```bash
-    pip install openmim
-    mim install mmcv-full==1.6.0
-    ```
-
-3. Install albumentations and other packages.
-    ```bash
-    pip install einops
-    pip install timm
-    pip install yapf==0.40.1
-    pip install albumentations==1.1.0
-    ```
-
-4. Clone and install this repository.
-    ```bash
-    git clone https://github.com/duzw9311/CFPT.git
-    cd ./CFPT
-    pip install -e .
-    ```
-
-## Usage
-### Data Preparation
-Download the VisDrone2019-DET dataset converted to COCO annotation format. You can download it from this [link](https://pan.baidu.com/s/1H_MtU-eSGI5jUJE-EcLynQ?pwd=2e3t).
-
-### Training
-```bash
+训练
+bash
 python tools/train.py configs/CFPT/retinanet_r18_cfpt_1x_visdrone.py 
-```
 
-### Testing
-```bash
+测试
+bash
 python tools/test.py configs/CFPT/retinanet_r18_cfpt_1x_visdrone.py work_dirs/retinanet_r18_cfpt_1x_visdrone/latest.pth --eval bbox
-```
-
-## Acknowledgement
-This repository is built upon the MMDetection library. Thanks to the authors of [CEASC](https://github.com/Cuogeihong/CEASC) and other researchers in the field of object detection for their open-source code.
-
-## Citation
-If you find this paper helpful for your project, we'd appreciate it if you could cite it.
-```
-@article{du2024cross,
-  title={Cross-Layer Feature Pyramid Transformer for Small Object Detection in Aerial Images},
-  author={Du, Zewen and Hu, Zhenjiang and Zhao, Guiyu and Jin, Ying and Ma, Hongbin},
-  journal={arXiv preprint arXiv:2407.19696},
-  year={2024}
-}
-```

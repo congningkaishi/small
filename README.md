@@ -1,10 +1,10 @@
 用于航拍图像小目标检测的跨层特征金字塔 Transformer
+
 本仓库提供了CFPT的官方 PyTorch 实现。
 
-在这篇论文中，我们提出了一种专为航拍图像小目标检测设计的跨层特征金字塔 Transformer。
+在这篇论文中，提出了一种专为航拍图像小目标检测设计的跨层特征金字塔 Transformer。
 
 下图展示了在 VisDrone-2019 DET 数据集上，基于 RetinaNet 的 CFPT 与其他特征金字塔网络的性能对比：
-
 <p align="center">
 <img src="resources/performance.png" width=63% height=63%
 class="center">
